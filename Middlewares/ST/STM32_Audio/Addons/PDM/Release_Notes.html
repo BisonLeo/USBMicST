@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Release Notes for PDM library</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="_htmresc/mini-st_2020.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png" />
+</head>
+<body>
+<div class="row">
+<div class="col-sm-12 col-lg-4">
+<center>
+<h1 id="release-notes-for-pdm-library">Release Notes for <mark>PDM library</mark></h1>
+<p>Copyright © 2020 STMicroelectronics<br />
+</p>
+<a href="https://www.st.com" class="logo"><img src="_htmresc/st_logo_2020.png" alt="ST logo" /></a>
+</center>
+<h1 id="license">License</h1>
+<p>This software component is licensed by ST under <strong>MCD-ST Image SW License Agreement V2</strong>, the “License”; You may not use this component except in compliance with the License. You may obtain a copy of the License at: <a href="http://www.st.com/software_license_agreement_image_v2">MCD-ST Image SW License Agreement V2</a></p>
+<h1 id="purpose">Purpose</h1>
+<p>The <strong>PDM library</strong> has the function to decimate and filter out a Pulse Density Modulated (PDM) stream from a digital microphone, in order to convert it to a Pulse Code Modulated (PCM) signal output stream.</p>
+<p>The PCM output stream is implemented at a sampling rate of 16kHz with a 16 bits resolution. Various decimation factors can be configured, in order to adapt to various PDM clocks. Digital microphone gain is configurable at any time and allows 1dB step in the range of -12dB to +51dB.</p>
+<p>Here is the list of references to the user documents:</p>
+<ul>
+<li><a href="https://www.st.com/resource/en/user_manual/dm00482421.pdf">UM2372</a>: STM32Cube PDM2PCM software library for the STM32F4/F7/H7 Series</li>
+<li><a href="https://www.st.com/resource/en/data_brief/x-cube-memsmic1.pdf">DB2599</a>: Analog and digital MEMS microphone acquisition and processing software expansion for STM32Cube</li>
+</ul>
+</div>
+<div class="col-sm-12 col-lg-8">
+<h1 id="update-history">Update history</h1>
+<div class="collapse">
+<input type="checkbox" id="collapse-section5" checked aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"> V3.2.0MOD / 18-December-2020 </label>
+<div>
+<h2 id="main-changes">Main changes</h2>
+<h3 id="product-update">Product update</h3>
+<ul>
+<li>CRC bug fixed for STM32H7</li>
+<li>Removed support for Cortex M3</li>
+<li>Added support for Cortex M33</li>
+<li>Added hardfp compiled version libraries</li>
+</ul>
+<h2 id="known-limitations">Known limitations</h2>
+<ul>
+<li>The provided library supports MCUs based on M33, M4 and M7 cores with FPU unit.</li>
+</ul>
+<h2 id="development-toolchains-and-compilers">Development toolchains and compilers</h2>
+<ul>
+<li>ARM GCC compiler, softfp and hardfp options
+<ul>
+<li>With Keil use wc16_softfp version</li>
+<li>With IAR 8 or STM32CubeIDE use wc32 or wc32_softfp version</li>
+<li>With IAR 7 use wc16 or wc16_softfp version</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"> V3.2.0 / 06-November-2019 </label>
+<div>
+<h2 id="main-changes-1">Main changes</h2>
+<h3 id="maintenance-release">Maintenance release</h3>
+<ul>
+<li>Add new PDM Filter libraries compliant with GCC version with FPU = softfp
+<ul>
+<li>libPDMFilter_CM4_GCC_wc32_softfp.a for GCC with wchar = 4</li>
+<li>libPDMFilter_CM7_GCC_wc32_softfp.a for GCC with wchar = 4</li>
+<li>libPDMFilter_CM4_GCC_wc16_softfp.a for GCC with wchar = 2</li>
+<li>libPDMFilter_CM7_GCC_wc16_softfp.a for GCC with wchar = 2</li>
+</ul></li>
+<li>Add new PDM Filter libraries compliant with GCC version with wchar = 2
+<ul>
+<li>libPDMFilter_CM3_GCC_wc16.a</li>
+<li>libPDMFilter_CM4_GCC_wc16.a</li>
+<li>libPDMFilter_CM7_GCC_wc16.a</li>
+</ul></li>
+<li>This PDM Filter libraries cortexM3 version is not backward compatible with previous V3.1.0 and earlier version, below the list of complete changes requiring updates on User applications:
+<ul>
+<li>For cortexM3 (CM3):
+<ul>
+<li>libPDMFilter_CM3_IAR.a updated and renamed to:
+<ul>
+<li>libPDMFilter_CM3_IAR_wc32.a for EWARM V8.x and later versions</li>
+<li>libPDMFilter_CM3_IAR_wc16.a for EWARM V7.80.x and earlier versions</li>
+</ul></li>
+<li>libPDMFilter_CM3_Keil.lib updated and renamed to libPDMFilter_CM3_Keil_wc16.lib</li>
+<li>libPDMFilter_CM3_GCC.a updated and renamed to libPDMFilter_CM3_GCC_wc32.a</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"> V3.1.0 / 29-September-2018 </label>
+<div>
+<h2 id="main-changes-2">Main changes</h2>
+<h3 id="product-update-1">Product update</h3>
+<ul>
+<li>Update PDM Filter libraries for CortexM7 (CM7) and cortexM4 (CM4) core versions.</li>
+</ul>
+<h2 id="known-limitations-1">Known limitations</h2>
+<ul>
+<li>This version is not backward compatible with previous V3.0.1 and earlier version, below the list of complete changes requiring updates on User applications:
+<ul>
+<li>For cortexM4 (CM4):
+<ul>
+<li>libPDMFilter_CM4_IAR.a updated and renamed to:
+<ul>
+<li>libPDMFilter_CM4_IAR_wc32.a for EWARM V8.x and later versions</li>
+<li>libPDMFilter_CM4_IAR_wc16.a for EWARM V7.80.x and earlier versions</li>
+</ul></li>
+<li>libPDMFilter_CM4_Keil.lib updated and renamed to libPDMFilter_CM4_Keil_wc16.lib</li>
+<li>libPDMFilter_CM4_GCC.a updated and renamed to libPDMFilter_CM4_GCC_wc32.a</li>
+</ul></li>
+<li>For cortexM7 (CM7):
+<ul>
+<li>libPDMFilter_CM7_IAR.a updated and renamed to:
+<ul>
+<li>libPDMFilter_CM7_IAR_wc32.a for EWARM V8.x and later versions</li>
+<li>libPDMFilter_CM7_IAR_wc16.a for EWARM V7.80.x and earlier versions</li>
+</ul></li>
+<li>libPDMFilter_CM7_Keil.lib updated and renamed to libPDMFilter_CM7_Keil_wc16.lib</li>
+<li>libPDMFilter_CM7_GCC.a updated and renamed to libPDMFilter_CM7_GCC_wc32.</li>
+</ul></li>
+</ul></li>
+<li>New CM7 libs support both CortexM7 core versions for STM32F7 and STM32H7 series</li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"> V3.0.1 / 29-December-2017 </label>
+<div>
+<h2 id="main-changes-3">Main changes</h2>
+<h3 id="patch-release">Patch release</h3>
+<ul>
+<li>Update libPDMFilter_CM7_Keil.lib to support CortexM7 (CM7) core version available on STM32F7 family.</li>
+</ul>
+<h2 id="known-limitations-2">Known limitations</h2>
+<ul>
+<li>The new libPDMFilter_CM7_Keil.lib supports only CortexM7 core version available on STM32F7 family. New version for libPDMFilter_CM7_Keil.lib supporting both CortexM7 core versions (STM32F7 and STM32H7) will be available for next release. The libPDMFilter_CM7_Keil.lib compatible with CortexM7 core version available on STM32H7 family is available on PDM Lib version V3.0.0</li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"> V3.0.0 / 28-February-2017 </label>
+<div>
+<h2 id="main-changes-4">Main changes</h2>
+<h3 id="product-update-2">Product update</h3>
+<ul>
+<li>Major APIs change</li>
+<li>Only one filtering function is provided PDM_Filter()</li>
+<li>The decimation factor, endianness, and bit order are now configured once at the PDM_Filter_Init() function call</li>
+<li>Decimation factor, demodulation loop size and digital gain can be changed on-the-fly using PDM_Filter_setConfig() function</li>
+</ul>
+<h2 id="known-limitations-3">Known limitations</h2>
+<p>This version is not backward compatible with previous V2.1.0 and earlier version, below guidelines on how to use the new APIs</p>
+<p>Library initialization</p>
+<p>Once the memory is allocated, some routines must be called to initialize the PDM2PCM library static memory:</p>
+<ul>
+<li>PDM_Filter_Init() routine should be called each time the processing in the audio is stopped and started.</li>
+<li>PDM_Filter_setConfig() routine should be called at least once before processing start in order to set configurable parameter</li>
+</ul>
+<p>Furthermore, has the PDM2PCM library runs on STM32 devices, CRC HW block must be enabled and reset.</p>
+<p>Module execution</p>
+<p>The run time process can start, when the hardware is configured and the PDM2PCM library is initialized and configured. At each new interrupt, when enough bits have been buffered, the PDM2PCM filter routine PDM_Filter() can be called. Between two consecutive calls to this filter routine, the dynamic parameters can be changed.</p>
+</div>
+</div>
+</div>
+</div>
+<footer class="sticky">
+<div class="columns">
+<div class="column" style="width:95%;">
+<p>For complete documentation on <strong>PDM library</strong> , visit: <a href="https://www.st.com/en/embedded-software/x-cube-memsmic1.html">PDM library</a></p>
+</div><div class="column" style="width:5%;">
+<p><abbr title="Based on template cx566953 version 2.0">Info</abbr></p>
+</div>
+</div>
+</footer>
+</body>
+</html>
