@@ -232,7 +232,7 @@ void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
 
 //	UpdatePointer= 1-UpdatePointer;
 //	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10);
-
+	CCA02M2_AUDIO_IN_HalfTransfer_CallBack(0);
 }
 
 
@@ -270,5 +270,6 @@ void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
 
 //	UpdatePointer= 1-UpdatePointer;
 //	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10);
+	CCA02M2_AUDIO_IN_TransferComplete_CallBack(0);
 }
 

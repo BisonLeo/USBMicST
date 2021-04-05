@@ -94,10 +94,10 @@ void CCA02M2_AUDIO_IN_TransferComplete_CallBack(uint32_t Instance)
 
 void AudioProcess(void)
 {
-  if (CCA02M2_AUDIO_IN_PDMToPCM(CCA02M2_AUDIO_INSTANCE,(uint16_t * )PDM_Buffer,PCM_Buffer) != BSP_ERROR_NONE)
-  {
-    Error_Handler();
-  }
+//  if (CCA02M2_AUDIO_IN_PDMToPCM(CCA02M2_AUDIO_INSTANCE,(uint16_t * )PDM_Buffer,PCM_Buffer) != BSP_ERROR_NONE)
+//  {
+//    Error_Handler();
+//  }
   Send_Audio_to_USB((int16_t *)PCM_Buffer, (AUDIO_IN_SAMPLING_FREQUENCY/1000)*AUDIO_IN_CHANNELS * N_MS );  
 }
 

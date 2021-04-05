@@ -83,6 +83,6 @@
 <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.dsf.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList context=&quot;reserved-for-future-use&quot;&gt;&#13;&#10;&lt;gdbmemoryBlockExpression address=&quot;536879728&quot; label=&quot;I2S_InternalBuffer&quot;/&gt;&#13;&#10;&lt;gdbmemoryBlockExpression address=&quot;536875988&quot; label=&quot;AudioInCtx[0].pBuff&quot;/&gt;&#13;&#10;&lt;/memoryBlockExpressionList&gt;&#13;&#10;"/>
+<stringAttribute key="org.eclipse.dsf.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList context=&quot;reserved-for-future-use&quot;&gt;&#13;&#10;&lt;gdbmemoryBlockExpression address=&quot;536879728&quot; label=&quot;I2S_InternalBuffer&quot;/&gt;&#13;&#10;&lt;gdbmemoryBlockExpression address=&quot;536875988&quot; label=&quot;AudioInCtx[0].pBuff&quot;/&gt;&#13;&#10;&lt;gdbmemoryBlockExpression address=&quot;536879748&quot; label=&quot;I2S_InternalBuffer&quot;/&gt;&#13;&#10;&lt;/memoryBlockExpressionList&gt;&#13;&#10;"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
 </launchConfiguration>
