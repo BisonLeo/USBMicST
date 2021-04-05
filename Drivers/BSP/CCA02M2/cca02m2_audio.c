@@ -290,7 +290,7 @@ __weak int32_t CCA02M2_AUDIO_IN_Init(uint32_t Instance, CCA02M2_AUDIO_Init_t* Au
       
       AudioInCtx[Instance].DecimationFactor = (PDM_Clock_Freq * 1000U)/AudioInit->SampleRate;
       /* Double buffer for 1 microphone */
-      AudioInCtx[Instance].Size = (PDM_Clock_Freq/8U) * 2U * N_MS_PER_INTERRUPT;
+      AudioInCtx[Instance].Size = (AudioInit->SampleRate/1000U)*(AudioInit->BitsPerSample/8U)*(AudioInit->ChannelsNbr) * 2U * N_MS_PER_INTERRUPT;
       
 #ifdef USE_STM32WBXX_NUCLEO 
       
@@ -1300,7 +1300,7 @@ int32_t CCA02M2_AUDIO_IN_Record(uint32_t Instance, uint8_t* pBuf, uint32_t NbrOf
 //      {
 //        return BSP_ERROR_PERIPH_FAILURE;
 //      }
-      if(HAL_OK != HAL_I2S_Receive_DMA(&hi2s2,I2S_InternalBuffer, (uint16_t)AudioInCtx[Instance].Size/2U))
+      if(HAL_OK != HAL_I2S_Receive_DMA(&hi2s2,I2S_InternalBuffer, (uint16_t)AudioInCtx[Instance].Size))
       {
     	  return BSP_ERROR_PERIPH_FAILURE;
       }

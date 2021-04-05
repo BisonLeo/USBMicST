@@ -198,7 +198,7 @@ static int8_t Audio_CommandMgr(uint8_t cmd)
 *       32 samples if called every 2 milliseconds and so on.
 */
 void Send_Audio_to_USB(int16_t * audioData, uint16_t PCMSamples){
-  
+  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
   USBD_AUDIO_Data_Transfer(&hUSBDDevice, (int16_t *)audioData, PCMSamples);
 }
 

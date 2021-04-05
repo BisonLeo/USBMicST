@@ -117,6 +117,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/syscalls.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/trigTable.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/trigTable.c</locationURI>
+		</link>
+		<link>
 			<name>Application/User/usbd_audio_if.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Src/usbd_audio_if.c</locationURI>
