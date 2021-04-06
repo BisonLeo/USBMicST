@@ -98,7 +98,9 @@ void AudioProcess(void)
 //  {
 //    Error_Handler();
 //  }
-  Send_Audio_to_USB((int16_t *)PCM_Buffer, (AUDIO_IN_SAMPLING_FREQUENCY/1000)*AUDIO_IN_CHANNELS * N_MS );
+  //Send_Audio_to_USB((int16_t *)PCM_Buffer, (AUDIO_IN_SAMPLING_FREQUENCY/1000)*AUDIO_IN_CHANNELS * N_MS );
+  Send_Audio_to_USB((int16_t *)PCM_Buffer, AudioInCtx[0].Size/2);
+
 }
 
 /**

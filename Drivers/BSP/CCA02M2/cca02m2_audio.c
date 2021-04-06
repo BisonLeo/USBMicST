@@ -290,7 +290,7 @@ __weak int32_t CCA02M2_AUDIO_IN_Init(uint32_t Instance, CCA02M2_AUDIO_Init_t* Au
       
       AudioInCtx[Instance].DecimationFactor = (PDM_Clock_Freq * 1000U)/AudioInit->SampleRate;
       /* Double buffer for 1 microphone */
-      AudioInCtx[Instance].Size = (AudioInit->SampleRate/1000U)*(AudioInit->BitsPerSample/8U)*(AudioInit->ChannelsNbr) * 2U * N_MS_PER_INTERRUPT;
+      AudioInCtx[Instance].Size = (AudioInit->SampleRate/1000U)*(AudioInit->ChannelsNbr)*2 * N_MS_PER_INTERRUPT;
       
 #ifdef USE_STM32WBXX_NUCLEO 
       
@@ -361,20 +361,15 @@ __weak int32_t CCA02M2_AUDIO_IN_Init(uint32_t Instance, CCA02M2_AUDIO_Init_t* Au
       
 #else             
       MX_I2S_IN_Config i2s_config;
-      if(AudioInCtx[0].ChannelsNbr == 1U)
-      {
-        i2s_config.DataFormat = I2S_DATAFORMAT_16B;
-      }
-      else
-      {
-        i2s_config.DataFormat = I2S_DATAFORMAT_32B;
-      }
+
+      i2s_config.DataFormat = I2S_DATAFORMAT_16B;
+
       
-      i2s_config.AudioFreq = ((PDM_Clock_Freq * 1000U) / 32U);
-      i2s_config.CPOL = I2S_CPOL_HIGH;
-      i2s_config.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+      i2s_config.AudioFreq = I2S_AUDIOFREQ_48K;
+      i2s_config.CPOL = I2S_CPOL_LOW;
+      i2s_config.MCLKOutput = I2S_MCLKOUTPUT_ENABLE;
       i2s_config.Mode = I2S_MODE_MASTER_RX;
-      i2s_config.Standard = I2S_STANDARD_MSB;
+      i2s_config.Standard = I2S_STANDARD_PHILIPS;
 #ifdef USE_STM32F4XX_NUCLEO
       i2s_config.FullDuplexMode = I2S_FULLDUPLEXMODE_DISABLE;
       i2s_config.ClockSource = I2S_CLOCK_PLL;
@@ -389,25 +384,25 @@ __weak int32_t CCA02M2_AUDIO_IN_Init(uint32_t Instance, CCA02M2_AUDIO_Init_t* Au
         {
           return  BSP_ERROR_PERIPH_FAILURE;
         }
-      }      
-      /* PLL clock is set depending by the AudioFreq */ 
+      }
+      /* PLL clock is set depending by the AudioFreq */
       if(MX_I2S_IN_ClockConfig(&hAudioInI2s, PDM_Clock_Freq) != HAL_OK)
       {
         return  BSP_ERROR_CLOCK_FAILURE;
-      }      
+      }
       /* I2S Peripheral configuration */
       hAudioInI2s.Instance          = AUDIO_IN_I2S_INSTANCE;
       __HAL_I2S_DISABLE(&hAudioInI2s);
       I2S_MspInit(&hAudioInI2s);
-      
-      if (MX_I2S_IN_Init(&hAudioInI2s, &i2s_config)!= HAL_OK)
-      {
-        return  BSP_ERROR_PERIPH_FAILURE;
-      }
-      if (HAL_I2S_Init(&hAudioInI2s) != HAL_OK)
-      {
-        return  BSP_ERROR_PERIPH_FAILURE;
-      }
+//
+//      if (MX_I2S_IN_Init(&hAudioInI2s, &i2s_config)!= HAL_OK)
+//      {
+//        return  BSP_ERROR_PERIPH_FAILURE;
+//      }
+//      if (HAL_I2S_Init(&hAudioInI2s) != HAL_OK)
+//      {
+//        return  BSP_ERROR_PERIPH_FAILURE;
+//      }
       
       if (AudioInCtx[0].ChannelsNbr>2U)
       {
@@ -929,8 +924,8 @@ __weak HAL_StatusTypeDef MX_I2S_IN_ClockConfig(I2S_HandleTypeDef *hi2s, uint32_t
     
     rccclkinit.PLLI2S.PLLI2SM = 8;
 #endif
-    rccclkinit.PLLI2S.PLLI2SN = 258;
-    rccclkinit.PLLI2S.PLLI2SR = 3;
+    rccclkinit.PLLI2S.PLLI2SN = 99;
+    rccclkinit.PLLI2S.PLLI2SR = 2;
   }   
   
 #if defined(STM32F446xx)

@@ -199,86 +199,20 @@ void DMA_ADC(){
 static int sinIndex = 0;
 
 void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
-	  uint32_t index;
-//	for (int i =0;i<DMAbuffersize/2;i++){
-//	Data[UpdatePointer][i] = DMA_buffer[i];
-//	}
-//	 for (int idx = 0; idx < 96 ;idx ++)
-//	  {
-//	    (PCM_Buffer)[idx] = Data[96+idx];
-//	  }
+	uint16_t * DataTempI2S =  I2S_InternalBuffer;
+	memcpy(AudioInCtx[0].pBuff, DataTempI2S, 192);
 
-//	Send_Audio_to_USB((int16_t *)PCM_Buffer,(48000/1000)*2 * 1);
 
-	uint16_t * DataTempI2S = &(I2S_InternalBuffer[AudioInCtx[0].Size/2U]);
-	int16_t value;
-    for(index=0; index<(AudioInCtx[0].Size/2U); index++)
-    {
-    	value = ((sinIndex%2)==0)?cos4096(sinIndex+2048):cos4096(sinIndex);
-    		    	sinIndex++;
-//        a = ((uint8_t *)(DataTempI2S))[(index*2U)];
-//        b = ((uint8_t *)(DataTempI2S))[(index*2U)+1U];
-//        ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)] = Channel_Demux[a & CHANNEL_DEMUX_MASK] | (Channel_Demux[b & CHANNEL_DEMUX_MASK] << 4);;
-//        ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)+1U] = Channel_Demux[(a>>1) & CHANNEL_DEMUX_MASK] | (Channel_Demux[(b>>1) & CHANNEL_DEMUX_MASK] << 4);
-//    	  b = dummy>>8;
-//		  a = dummy & 0xFF;
-//		  ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)] = Channel_Demux[a & CHANNEL_DEMUX_MASK] | (Channel_Demux[b & CHANNEL_DEMUX_MASK] << 4);;
-//		  ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)+1U] = Channel_Demux[(a>>1) & CHANNEL_DEMUX_MASK] | (Channel_Demux[(b>>1) & CHANNEL_DEMUX_MASK] << 4);
-  	 // ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)+1U] = ((uint8_t *)(DataTempI2S))[(index*2U)+1U];
-  	 // ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)] = ((uint8_t *)(DataTempI2S))[(index*2U)];
-    	(AudioInCtx[0].pBuff)[index] = value;
-    }
-
-//	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
-//	USBD_LL_FlushEP(&hUsbDeviceFS, AUDIO_IN_EP);
-//	USBD_LL_Transmit(&hUsbDeviceFS, AUDIO_IN_EP,
-//			(uint8_t *)Data[UpdatePointer],
-//	                   192);
-
-//	UpdatePointer= 1-UpdatePointer;
-//	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10);
 	CCA02M2_AUDIO_IN_HalfTransfer_CallBack(0);
 }
 
 
 void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
-	 uint32_t index;
-//	for (int i =0;i<DMAbuffersize/2;i++){
-//	Data[UpdatePointer][i] = DMA_buffer[i];
-//	}
-//	 for (int idx = 0; idx < 96 ;idx ++)
-//	  {
-//	    (PCM_Buffer)[idx] = Data[idx];
-//	  }
-//	Send_Audio_to_USB((int16_t *)PCM_Buffer,(48000/1000)*2 * 1);
-		uint16_t * DataTempI2S = I2S_InternalBuffer;
-	    uint8_t a,b;
-	    int16_t value;
-	    for(index=0; index<(AudioInCtx[0].Size/2U); index++)  // index even, for left, index odd is right channel
-	    {
-	    	value = ((sinIndex%2)==0)?cos4096(sinIndex+2048):cos4096(sinIndex);
-	    	sinIndex++;
-	//        a = ((uint8_t *)(DataTempI2S))[(index*2U)];
-	//        b = ((uint8_t *)(DataTempI2S))[(index*2U)+1U];
-	//        ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)] = Channel_Demux[a & CHANNEL_DEMUX_MASK] | (Channel_Demux[b & CHANNEL_DEMUX_MASK] << 4);;
-	//        ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)+1U] = Channel_Demux[(a>>1) & CHANNEL_DEMUX_MASK] | (Channel_Demux[(b>>1) & CHANNEL_DEMUX_MASK] << 4);
-	//    	  b = dummy>>8;
-	//		  a = dummy & 0xFF;
-	//		  ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)] = Channel_Demux[a & CHANNEL_DEMUX_MASK] | (Channel_Demux[b & CHANNEL_DEMUX_MASK] << 4);;
-	//		  ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)+1U] = Channel_Demux[(a>>1) & CHANNEL_DEMUX_MASK] | (Channel_Demux[(b>>1) & CHANNEL_DEMUX_MASK] << 4);
-	     	 // ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)+1U] = ((uint8_t *)(DataTempI2S))[(index*2U)+1U];
-	     	 // ((uint8_t *)(AudioInCtx[0].pBuff))[(index*2U)] = ((uint8_t *)(DataTempI2S))[(index*2U)];
-	       	(AudioInCtx[0].pBuff)[index] = value;
-	    }
+	uint16_t * DataTempI2S = &(I2S_InternalBuffer[AudioInCtx[0].Size/2U]);
 
-//	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
-//	USBD_LL_FlushEP(&hUsbDeviceFS, AUDIO_IN_EP);
-//	USBD_LL_Transmit(&hUsbDeviceFS, AUDIO_IN_EP,
-//			(uint8_t *) Data[UpdatePointer],
-//	                   192);
+	memcpy(AudioInCtx[0].pBuff, DataTempI2S, 192);
 
-//	UpdatePointer= 1-UpdatePointer;
-//	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10);
+
 	CCA02M2_AUDIO_IN_TransferComplete_CallBack(0);
 }
 
