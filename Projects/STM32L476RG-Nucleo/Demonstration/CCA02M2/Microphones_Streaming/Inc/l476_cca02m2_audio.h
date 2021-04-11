@@ -306,16 +306,16 @@ typedef struct
 #define AUDIO_DFSDMx_CLK_ENABLE()                    __HAL_RCC_DFSDM_CLK_ENABLE()
 
 /* DATIN for MIC1 */
-#define AUDIO_DFSDMx_DATIN_MIC1_PIN                  GPIO_PIN_14
+#define AUDIO_DFSDMx_DATIN_MIC1_PIN                  GPIO_PIN_7
 #define AUDIO_DFSDMx_DATIN_MIC1_AF                   GPIO_AF6_DFSDM
-#define AUDIO_DFSDMx_DATIN_MIC1_GPIO_PORT            GPIOB
-#define AUDIO_DFSDMx_DATIN_MIC1_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE() 
+#define AUDIO_DFSDMx_DATIN_MIC1_GPIO_PORT            GPIOE
+#define AUDIO_DFSDMx_DATIN_MIC1_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOE_CLK_ENABLE()
 
 /* DATIN for MIC2 */
-#define AUDIO_DFSDMx_DATIN_MIC2_PIN                  GPIO_PIN_14
+#define AUDIO_DFSDMx_DATIN_MIC2_PIN                  GPIO_PIN_7
 #define AUDIO_DFSDMx_DATIN_MIC2_AF                   GPIO_AF6_DFSDM
-#define AUDIO_DFSDMx_DATIN_MIC2_GPIO_PORT            GPIOB
-#define AUDIO_DFSDMx_DATIN_MIC2_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOB_CLK_ENABLE() 
+#define AUDIO_DFSDMx_DATIN_MIC2_GPIO_PORT            GPIOE
+#define AUDIO_DFSDMx_DATIN_MIC2_GPIO_CLK_ENABLE()    __HAL_RCC_GPIOE_CLK_ENABLE()
 
 /* DATIN for MIC3 */
 #define AUDIO_DFSDMx_DATIN_MIC3_PIN                  GPIO_PIN_10
@@ -331,10 +331,10 @@ typedef struct
 
 
 /* CKOUT for all mics (GPIOC_PIN_2)*/                                                           
-#define AUDIO_DFSDMx_CKOUT_PIN                       GPIO_PIN_2
+#define AUDIO_DFSDMx_CKOUT_PIN                       GPIO_PIN_9
 #define AUDIO_DFSDMx_CKOUT_AF                        GPIO_AF6_DFSDM
-#define AUDIO_DFSDMx_CKOUT_GPIO_PORT                 GPIOC
-#define AUDIO_DFSDMx_CKOUT_GPIO_CLK_ENABLE()         __HAL_RCC_GPIOC_CLK_ENABLE()
+#define AUDIO_DFSDMx_CKOUT_GPIO_PORT                 GPIOE
+#define AUDIO_DFSDMx_CKOUT_GPIO_CLK_ENABLE()         __HAL_RCC_GPIOE_CLK_ENABLE()
 
 
 /* DFSDM DMA MIC1 and MIC2 channels definitions */
