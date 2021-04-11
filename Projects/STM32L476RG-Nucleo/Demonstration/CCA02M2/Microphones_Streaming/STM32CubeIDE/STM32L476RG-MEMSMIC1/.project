@@ -218,6 +218,16 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.c</locationURI>
 		</link>
 		<link>
+			<name>Drivers/STM32L4xx_HAL_Driver/stm32l4xx_hal_sai.c</name>
+			<type>1</type>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_sai.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32L4xx_HAL_Driver/stm32l4xx_hal_sai_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_sai_ex.c</locationURI>
+		</link>
+		<link>
 			<name>Drivers/STM32L4xx_HAL_Driver/stm32l4xx_hal_spi.c</name>
 			<type>1</type>
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.c</locationURI>
@@ -253,9 +263,9 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/BSP/X-NUCLEO-CCA02M2/cca02m2_audio.c</name>
+			<name>Drivers/BSP/X-NUCLEO-CCA02M2/l476_cca02m2_audio.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/CCA02M2/cca02m2_audio.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/l476_cca02m2_audio.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/ST/STM32_USB_Device_Library/Class</name>

@@ -33,7 +33,7 @@
 #include "usbd_audio_in.h"
 #include "usbd_audio_if.h"    
 #include "audio_application.h"
-#include "cca02m2_audio.h"
+#include "l476_cca02m2_audio.h"
 
 void SystemClock_Config(void);
 
