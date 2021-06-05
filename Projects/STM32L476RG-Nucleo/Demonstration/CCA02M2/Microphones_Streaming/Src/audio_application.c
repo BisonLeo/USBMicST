@@ -21,6 +21,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "audio_application.h"
+#include "fir_process.h"
 
 /** @addtogroup X_CUBE_MEMSMIC1_Applications
 * @{
@@ -93,8 +94,13 @@ void CCA02M2_AUDIO_IN_TransferComplete_CallBack(uint32_t Instance)
 
 void AudioProcess(void)
 {
+  static	uint16_t outBuffer[((AUDIO_IN_CHANNELS*AUDIO_IN_SAMPLING_FREQUENCY)/1000)  * N_MS ];
   /*for L4 PDM to PCM conversion is performed in hardware by DFSDM peripheral*/
-  Send_Audio_to_USB((int16_t *)PCM_Buffer, (AUDIO_IN_SAMPLING_FREQUENCY/1000)*AUDIO_IN_CHANNELS * N_MS );  
+
+  // call fir process
+  fir_process((int16_t*)PCM_Buffer, (int16_t*)outBuffer, ((AUDIO_IN_CHANNELS*AUDIO_IN_SAMPLING_FREQUENCY)/1000)  * N_MS);
+
+  Send_Audio_to_USB((int16_t *)outBuffer, (AUDIO_IN_SAMPLING_FREQUENCY/1000)*AUDIO_IN_CHANNELS * N_MS );
 }
 
 /**
@@ -117,6 +123,9 @@ void Init_Acquisition_Peripherals(uint32_t AudioFreq, uint32_t ChnlNbrIn, uint32
   {
     Error_Handler();
   } 
+
+  // call fir init
+  fir_init();
 }
 
 /**

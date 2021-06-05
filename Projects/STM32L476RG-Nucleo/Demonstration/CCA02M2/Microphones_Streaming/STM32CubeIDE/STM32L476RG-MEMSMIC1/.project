@@ -98,6 +98,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/cube_hal_l4.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/fir_process.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/fir_process.c</locationURI>
+		</link>
+		<link>
 			<name>Application/User/main.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Src/main.c</locationURI>
